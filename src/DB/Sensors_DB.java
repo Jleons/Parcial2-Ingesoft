@@ -21,10 +21,7 @@ public class Sensors_DB {
     
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Sensor_DBU");
 
-    public Sensors_DB() {
-    }
-
-    
+        
     public static boolean create(Sensors sensors) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -113,6 +110,11 @@ public class Sensors_DB {
             em.close();
             return sensor;
         }
+    }
+    
+    public static boolean isAverage (int in){
+        Sensors s = search(in); 
+        return s.getAverage();
     }
     
 }

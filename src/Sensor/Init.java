@@ -27,6 +27,9 @@ public class Init implements Serializable {
     private int id;
     private String sensor_Location;
     private String sensor_type;
+    
+    public Init(){
+    }
 
     public Init(int id, String sensor_Location, String sensor_type) {
         this.id = id;

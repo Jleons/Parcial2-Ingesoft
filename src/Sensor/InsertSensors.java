@@ -16,9 +16,10 @@ public class InsertSensors {
     
     public static void main(String[] args) {
 
-    Sensors s = new Sensors("Light sensor", "Line Hunting Sensor", 0, 1, false, 0);
-        boolean x = Sensors_DB.create(s);
-        System.out.println(x);
+    Sensors sensor = new Sensors("Light sensor", "Line Hunting Sensor", 0, 1, false, 1);
+    Sensors_DB.create(sensor);
+    Sensors t = new Sensors("Light sensor", "Line Hunting Sensor", 0, 1, true, 2);
+    Sensors_DB.create(t);
 
     }
 }

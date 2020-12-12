@@ -30,7 +30,10 @@ public class Sensors implements Serializable{
     private int max_value;
     private boolean average;
     private int hours; 
-
+    
+    public Sensors() {
+    }
+    
     public Sensors(String type, String name, int min_value, int max_value, boolean average, int hours) {
         this.type = type;
         this.name = name;

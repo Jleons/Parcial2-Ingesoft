@@ -61,6 +61,48 @@ public class DataManagement {
 
         return rows;
     }
-
     
+    public static float processData(int id_s){
+        
+        ArrayList<DataGrid> arrayData = new ArrayList<>();
+        Init i = Init_DB.searchInit(id_s);
+        Sensors s = Sensors_DB.search(i.getId());
+        int average = 0;
+        int count = 0;
+        
+        if(Sensors_DB.isAverage(id_s)){
+            arrayData = DataGrid_DB.averageRead(id_s);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime date = null;
+            
+            for (DataGrid t : arrayData) {
+                date = LocalDateTime.parse(t.getDate(), formatter);
+                if(date.isAfter(LocalDateTime.now().minusHours(s.getHours()))){
+                    System.out.println(t.getDate());
+                    average += t.getData();
+                    count++;
+                                        
+                }
+            }
+            
+            float div = (float)average/count;
+            System.out.println(average);
+            System.out.println(count);
+            System.out.println(div);
+            return (div);
+            
+        }
+        if(!Sensors_DB.isAverage(id_s)){
+            DataGrid t = DataGrid_DB.singleRead(id_s);
+            return t.getData();
+        }
+        
+        return 0;
+        
+    }
+    
+    /*public static int dataParcial (int in){
+                
+        return DataGrid_DB.getAverage(in, Sensors_DB.isAverage(in));        
+    }*/
 }

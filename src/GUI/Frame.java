@@ -16,6 +16,7 @@ public class Frame extends javax.swing.JFrame {
     
     private Send send = new Send();
     private Data data = new Data();
+    private Parcial process = new Parcial();
     /**
      * Creates new form Frame
      */
@@ -57,7 +58,7 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
-        Parcial.setText("?");
+        Parcial.setText("Process Data");
         Parcial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ParcialActionPerformed(evt);
@@ -73,7 +74,7 @@ public class Frame extends javax.swing.JFrame {
                 .addComponent(Send_Button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Show_Button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
                 .addComponent(Parcial)
                 .addContainerGap())
         );
@@ -128,7 +129,10 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_Show_ButtonActionPerformed
 
     private void ParcialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParcialActionPerformed
-        // TODO add your handling code here:
+        jPanel2.setVisible(false);
+        jPanel2.removeAll();
+        jPanel2.add(process);
+        jPanel2.setVisible(true);
     }//GEN-LAST:event_ParcialActionPerformed
 
     /**

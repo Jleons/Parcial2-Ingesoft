@@ -56,6 +56,26 @@ public class DataGrid_DB {
         }
     }
     
+    public static DataGrid singleRead(int id_s) {
+        EntityManager em = emf.createEntityManager();
+        DataGrid res = null;
+        Query q = em.createQuery
+        ("SELECT t FROM DataGrid t " + "WHERE  t.install_id =:install_id ORDER BY t.operation_id DESC")
+        .setParameter("install_id", id_s);
+
+        try {
+            res = (DataGrid) q.getSingleResult();
+        } catch (NonUniqueResultException e) {
+            res = (DataGrid) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return res;
+        }
+    }
+    
+    
     public static ArrayList<DataGrid> multipleRead(int id_s) {
         
         EntityManager em = emf.createEntityManager();
@@ -83,7 +103,28 @@ public class DataGrid_DB {
         }
 
     }
-           
+        
+        public static ArrayList<DataGrid> averageRead(int id_s) {
+        
+        EntityManager em = emf.createEntityManager();
+        List<DataGrid> dat = null;
+        Query q = em
+                .createQuery("SELECT t FROM DataGrid t " + "WHERE t.install_id =:id " + "ORDER BY t.operation_id DESC")
+                .setParameter("id", id_s);
+
+        try {
+            dat = q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            ArrayList<DataGrid> list = new ArrayList<>(dat.size());
+            list.addAll(dat);          
+            return list;
+        }
+
+    }
+               
     public static boolean update(DataGrid object, DataGrid newObject) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -122,4 +163,16 @@ public class DataGrid_DB {
             return ret;
         }
     }
+    
+    /*public static int getAverage(int id , boolean has){
+        
+        if (has){
+            return 4;
+        }
+        
+        if(!has){
+        return 1;
+        }
+        return 0;
+    }*/
 }

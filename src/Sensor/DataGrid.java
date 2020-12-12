@@ -27,6 +27,9 @@ public class DataGrid implements Cloneable {
     private int data;
     private String date;
 
+    DataGrid(){
+    }
+    
     public DataGrid(int install_id, int data, String date) {
         
         this.install_id = install_id;

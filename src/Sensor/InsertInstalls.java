@@ -17,8 +17,8 @@ public class InsertInstalls {
         public static void main(String[] args) {
 
         Init i = new Init(1, "Vacuum cleaner", Sensors_DB.search(1).getType());
-        boolean b = Init_DB.create(i);
-        System.out.println(b);
-        
+        Init_DB.create(i);
+        Init t = new Init(2, "Lab Robot", Sensors_DB.search(2).getType());
+        Init_DB.create(t);
         }
 }
