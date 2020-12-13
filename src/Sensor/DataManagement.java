@@ -78,7 +78,7 @@ public class DataManagement {
             for (DataGrid t : arrayData) {
                 date = LocalDateTime.parse(t.getDate(), formatter);
                 if(date.isAfter(LocalDateTime.now().minusHours(s.getHours()))){
-                    System.out.println(t.getDate());
+                    System.out.println(t.getOperation_id() + ".  " + t.getDate());
                     average += t.getData();
                     count++;
                                         
@@ -86,9 +86,8 @@ public class DataManagement {
             }
             
             float div = (float)average/count;
-            System.out.println(average);
-            System.out.println(count);
-            System.out.println(div);
+            System.out.println(average + "/" + count + " = " + div);
+            System.out.println("------------------");
             return (div);
             
         }
